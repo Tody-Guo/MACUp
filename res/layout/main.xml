@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/V_mac" android:text="@string/V_mac"></TextView>
+    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/E_mac" android:text="@string/E_mac" android:inputType="text" android:focusableInTouchMode="false"></EditText>
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:id="@+id/V_IP" android:text="@string/V_ip"/>
+<EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/E_address" android:text="@string/E_address" android:inputType="text">
+
+</EditText>
+<TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/V_port" android:text="@string/V_port"></TextView>
+<EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/E_port" android:text="@string/E_port" android:inputType="number"></EditText>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/V_sn" android:text="@string/V_sn"></TextView>
+<EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/E_sn" android:text="@string/E_sn" android:inputType="text" android:focusableInTouchMode="false"></EditText>
+<Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/B_macup" android:text="@string/B_macup"></Button>
+<TextView android:layout_width="wrap_content" android:text="@string/V_ret" android:layout_height="wrap_content" android:id="@+id/V_ret"></TextView>
+</LinearLayout>

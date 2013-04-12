@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MAC Upload</string>
+    <string name="V_ip">Server Address:</string>
+    <string name="V_port">Port:</string>
+    <string name="B_macup">Upload MAC</string>
+    <string name="E_address">192.168.1.2</string>
+    <string name="E_port">8086</string>
+    <string name="V_mac">MAC Address:</string>
+    <string name="E_mac"></string>
+    <string name="V_sn">Serial Number:</string>
+    <string name="E_sn"></string>   
+    <string name="V_ret">Result: </string>
+</resources>
