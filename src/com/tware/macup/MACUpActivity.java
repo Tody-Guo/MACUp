@@ -1,15 +1,18 @@
 package com.tware.macup;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -27,7 +30,7 @@ import android.widget.TextView;
 
 public class MACUpActivity extends Activity {
     /** Called when the activity is first created. */
-	final public String TAG = "MACUp";
+	final public String TAG = "TestLOG";
 	private static String RKPATH = "/dev/rknand_sys_storage";
 	private EditText ipAddr;
 	private EditText port;
@@ -55,16 +58,16 @@ public class MACUpActivity extends Activity {
         sn = (EditText)findViewById(com.tware.macup.R.id.E_sn);
 
         /*
-	*  Read Serial number from JNI. 
-	*/
-	if (isRk30())
-	{
-	  log.e(TAG, "Read SN for Rk30");
-	  sn.setText(rkReadSn().toUpperCase());
-	}else{
-	  log.e(TAG, "Read SN for Nvidia or Amlogic");	
-	  sn.setText(ReadSerial().toUpperCase());
-	}
+         *  Read Serial number from JNI. 
+         */
+        if (isRk30())
+        {
+        	Log.e(TAG, "Read SN for Rk30");
+        	sn.setText(rkReadSn().toUpperCase(Locale.US));
+        }else{
+        	Log.e(TAG, "Read SN for Nvidia or Amlogic");	
+        	sn.setText(ReadSerial().toUpperCase(Locale.US));
+        }
 	
         serialnumber = sn.getText().toString().trim();
 
@@ -86,7 +89,7 @@ public class MACUpActivity extends Activity {
         	mWifi.setWifiEnabled(true);
         }
         
-        if (serialnumber.length() < 12 && !sn.getText().toString().equals("N/A")) // 2012-03-28 added
+        if (serialnumber.length() < 17 && !sn.getText().toString().equals("N/A")) // 2012-03-28 added
         {
         	new AlertDialog.Builder(this).setIcon(R.drawable.mac)
         		.setTitle("错误")
@@ -111,8 +114,8 @@ public class MACUpActivity extends Activity {
                 		.setPositiveButton("", null);
                 	return ;
                 }
-                WifiMac = WifiMac.toUpperCase();
-                mac.setText(WifiMac.toUpperCase());
+                WifiMac = WifiMac.toUpperCase(Locale.US);
+                mac.setText(WifiMac.toUpperCase(Locale.US));
 
                 LOGMSG = "NOSN|" + WifiMac; // 2012-03-05 added
 
@@ -176,6 +179,8 @@ public class MACUpActivity extends Activity {
     	Socket sock = new Socket(ipAddr.getText().toString(),
     							Integer.parseInt(port.getText().toString()));
     	
+    	Log.e(TAG, "TESTLOG: "+WifiMac);
+    	
         OutputStream sout = sock.getOutputStream();
         InputStream sin = sock.getInputStream();
         
@@ -227,16 +232,16 @@ public class MACUpActivity extends Activity {
     
     public static boolean fileExists(String path)
     {
-	File f = new File(path);
-	if(f.exists())
-	  return true;
-	else	
-	  return false;
+    	File f = new File(path);
+    	if(f.exists())
+    		return true;
+    	else	
+    		return false;
     }
     
     public static boolean isRk30()
     {
-	return fileExists(RKPATH);
+    	return fileExists(RKPATH);
     }
     
     @Override
@@ -250,12 +255,18 @@ public class MACUpActivity extends Activity {
     			return true;
     			
     		case 1:
-    			Log.d(TAG, "About");
+    			Log.d(TAG, "Reading About");
     			AlertDialog.Builder builder = new AlertDialog.Builder(MACUpActivity.this);	
-    			builder.setTitle("About")
+    			try {
+    				builder.setTitle("About")
     					.setIcon(com.tware.macup.R.drawable.mac)
-    					.setMessage("MAC Uploader 1.5\n\n(c) Tody 2012, T-ware Inc.")
+    					.setMessage("Test Logs Uploader "+ 
+    							this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName
+    							+"\n\n(c) Tody 2012, T-ware Inc.")
     					.setPositiveButton("Ok", null).show();
+    			} catch (NameNotFoundException e) {
+    				e.printStackTrace();
+    			}
     			return true;
 
     		case 2:

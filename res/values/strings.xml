@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MAC Upload</string>
+    <string name="app_name">Log Upload</string>
     <string name="V_ip">Server Address:</string>
     <string name="V_port">Port:</string>
     <string name="B_macup">Upload MAC</string>

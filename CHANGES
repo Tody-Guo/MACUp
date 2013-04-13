@@ -1,3 +1,15 @@
-v1.5.1 @ 2013/04/12
+v1.5.3 @ 2013/04/12
   *) add Rockchip rkReadSN function support.
 
+v1.5.2(2012-05-26):
+	1, Add 18, 19, 20bit serial number check
+
+v1.5.1(2012-04-02):
+	1, Add 17bit serial number check
+	2, Change name to Log Upload
+	3, Change Tags
+	4, fixed some bugs.
+
+v1.5(2012-03-28):	
+	1, Add serial nubmer check,  >= 12 is Ok else fail.
+	2, Change APK Icons.
